@@ -1,15 +1,41 @@
-let newParagraph = document.createElement("p");
 let mainDiv = document.getElementById("main");
+let resetBtn = document.getElementById("resetBtn");
 
-for (i = 0; i < 16; i ++){
+function getHeightUnder(element){
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    return windowHeight - rect.bottom;
+}
+
+function drawGrid(size){
+    let under = getHeightUnder(mainDiv);
+    let boxSize = Math.floor(under / size);
+    console.log(under);
+    console.log(boxSize);
+    for (i = 0; i < size; i ++){
     let rowDiv = document.createElement("div");
-    for (j = 0; j < 16; j ++){
+    for (j = 0; j < size; j ++){
         let colDiv = document.createElement("div");
-        colDiv.setAttribute("class", "divBox");
+        colDiv.style.width = boxSize.toString() +  "px";
+        colDiv.style.height = boxSize.toString() +  "px";
         rowDiv.appendChild(colDiv);
         colDiv.addEventListener("mouseover", (e) => {
-            colDiv.setAttribute("class", "divBox black");
+            colDiv.setAttribute("class", "black");
         });
     }
     mainDiv.appendChild(rowDiv);
+    }   
 }
+
+drawGrid(16)
+
+resetBtn.addEventListener("click", () => {
+    let sizeStr = prompt("How many squares in the grid? (under 100)");
+    let size = parseInt(sizeStr)
+    if (size <= 100){
+        mainDiv.innerHTML = "";
+        drawGrid(size);
+    }else{
+        alert("Try again")
+    }
+})
