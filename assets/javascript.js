@@ -1,6 +1,12 @@
 let newParagraph = document.createElement("p");
-let oldParagraph = document.getElementById("main");
+let mainDiv = document.getElementById("main");
 
-newParagraph.textContent = "I'm here too!!!";
-
-oldParagraph.appendChild(newParagraph);
+for (i = 0; i < 16; i ++){
+    let rowDiv = document.createElement("div");
+    for (j = 0; j < 16; j ++){
+        let colDiv = document.createElement("div");
+        colDiv.setAttribute("class", "divBox");
+        rowDiv.appendChild(colDiv);
+    }
+    mainDiv.appendChild(rowDiv);
+}
