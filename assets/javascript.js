@@ -10,8 +10,6 @@ function getHeightUnder(element){
 function drawGrid(size){
     let under = getHeightUnder(mainDiv);
     let boxSize = Math.floor(under / size);
-    console.log(under);
-    console.log(boxSize);
     for (i = 0; i < size; i ++){
     let rowDiv = document.createElement("div");
     for (j = 0; j < size; j ++){
@@ -27,8 +25,6 @@ function drawGrid(size){
     }   
 }
 
-drawGrid(16)
-
 resetBtn.addEventListener("click", () => {
     let sizeStr = prompt("How many squares in the grid? (under 100)");
     let size = parseInt(sizeStr)
@@ -39,3 +35,5 @@ resetBtn.addEventListener("click", () => {
         alert("Try again")
     }
 })
+
+drawGrid(16)
